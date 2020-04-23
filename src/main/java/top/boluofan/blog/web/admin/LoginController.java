@@ -1,5 +1,6 @@
 package top.boluofan.blog.web.admin;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import top.boluofan.blog.constant.WebConstant;
 import top.boluofan.blog.po.User;
 import top.boluofan.blog.service.UserService;
+import top.boluofan.blog.utils.CommonUtils;
 import top.boluofan.blog.utils.MapCache;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -35,14 +38,35 @@ public class LoginController {
     public String login(@RequestParam String username,
                         @RequestParam String password,
                         @RequestParam String validateCode,
-                        @RequestParam (required = false) Boolean rememberMe,
+                        @RequestParam(required = false) Boolean rememberMe,
+                        HttpServletResponse response,
                         HttpSession session) {
         Integer error_count = cache.get("login_error_count");
         try {
-            User user = userService.checkUser(username, password);
-            if (user != null) {//校验通过
-                //存入session
-                session.setAttribute(WebConstant.LOGIN_SESSION_KEY,user);
+            if (StringUtils.isNotBlank(validateCode)) {
+                validateCode = validateCode.toLowerCase();//转小写
+                String sessionVC = session.getAttribute("sessionVC").toString();
+                if (validateCode.equals(sessionVC)){
+                    User user = userService.checkUser(username, password);
+                    if (user != null) {//校验通过
+                        //是否需要存入 cookie
+                        if (rememberMe){
+                            String userIdStr = user.getId().toString();
+                            CommonUtils.setCookie(response,userIdStr,60*60*24*7);
+                        }
+                        // 重置密码并存入session
+                        user.setPassword("");
+                        session.setAttribute(WebConstant.LOGIN_SESSION_KEY, user);
+                    }
+                }else {
+                    error_count = error_count++;
+                    cache.set("login_error_count",error_count,10*60);
+                    if (error_count >= 3) {
+                        System.out.println("---验证码输入错误三次，请稍后再试");
+                    }
+                }
+            } else {
+                System.out.println("验证码为空");
             }
         } catch (Exception e) {
             e.printStackTrace();

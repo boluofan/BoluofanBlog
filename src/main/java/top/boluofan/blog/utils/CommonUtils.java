@@ -21,15 +21,16 @@ public class CommonUtils {
      * 设置记住密码cookie
      *
      * @param response
-     * @param uid
+     * @param data 数据
+     * @param seconds 过期时间 s
      */
-    public static void setCookie(HttpServletResponse response, Integer uid) {
+    public static void setCookie(HttpServletResponse response, String data,Integer seconds) {
         try {
-            String val = enAes(uid.toString(),WebConstant.AES_SALT);
+            String val = enAes(data,WebConstant.AES_SALT);
             boolean isSSL = false;
             Cookie cookie = new Cookie(WebConstant.USER_COOKIE_NAME, val);
             cookie.setPath("/");
-            cookie.setMaxAge(60*30);
+            cookie.setMaxAge(seconds);
             cookie.setSecure(isSSL);
             response.addCookie(cookie);
         } catch (Exception e) {

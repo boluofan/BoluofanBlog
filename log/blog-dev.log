@@ -387,3 +387,52 @@ top.boluofan.blog.NotFoundException: 博客找不到
 2020-04-21 15:33:30.725  INFO 13148 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
 2020-04-21 15:33:30.850  INFO 13148 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
 2020-04-21 15:33:30.861  INFO 13148 --- [restartedMain] top.boluofan.blog.BlogApplication        : Started BlogApplication in 10.953 seconds (JVM running for 12.859)
+2020-04-23 23:57:11.398  INFO 3720 --- [restartedMain] top.boluofan.blog.BlogApplication        : Starting BlogApplication on DESKTOP-SAAOVCG with PID 3720 (E:\Java\Workspace\gitRepo\BoluofanBlog\target\classes started by Boluofan in E:\Java\Workspace\gitRepo\BoluofanBlog)
+2020-04-23 23:57:11.398  INFO 3720 --- [restartedMain] top.boluofan.blog.BlogApplication        : The following profiles are active: dev
+2020-04-23 23:57:11.805  INFO 3720 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@49f75266: startup date [Thu Apr 23 23:57:11 CST 2020]; root of context hierarchy
+2020-04-23 23:57:14.508  INFO 3720 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2020-04-23 23:57:14.508  INFO 3720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-23 23:57:14.508  INFO 3720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2020-04-23 23:57:14.679  INFO 3720 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-23 23:57:14.679  INFO 3720 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2874 ms
+2020-04-23 23:57:15.054  INFO 3720 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2020-04-23 23:57:15.086  INFO 3720 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-04-23 23:57:15.086  INFO 3720 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-04-23 23:57:15.086  INFO 3720 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2020-04-23 23:57:15.086  INFO 3720 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2020-04-23 23:57:15.929  INFO 3720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2020-04-23 23:57:15.945  INFO 3720 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-04-23 23:57:16.039  INFO 3720 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2020-04-23 23:57:16.039  INFO 3720 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-04-23 23:57:16.039  INFO 3720 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2020-04-23 23:57:16.289  INFO 3720 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2020-04-23 23:57:16.492  INFO 3720 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-04-23 23:57:17.023  INFO 3720 --- [restartedMain] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2020-04-23 23:57:18.398  INFO 3720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-04-23 23:57:19.476  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@49f75266: startup date [Thu Apr 23 23:57:11 CST 2020]; root of context hierarchy
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin],methods=[GET]}" onto public java.lang.String top.boluofan.blog.web.admin.LoginController.loginPage()
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/admin/login],methods=[POST]}" onto public java.lang.String top.boluofan.blog.web.admin.LoginController.login(java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,javax.servlet.http.HttpSession)
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String top.boluofan.blog.web.IndexController.index()
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[GET]}" onto public java.lang.String top.boluofan.blog.web.IndexController.loginndex()
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/about],methods=[GET]}" onto public java.lang.String top.boluofan.blog.web.IndexController.about()
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2020-04-23 23:57:19.617  INFO 3720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2020-04-23 23:57:19.679  INFO 3720 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-23 23:57:19.679  INFO 3720 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-23 23:57:19.726  INFO 3720 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in controllerExceptionHandler
+2020-04-23 23:57:19.757  INFO 3720 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2020-04-23 23:57:20.523  INFO 3720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-04-23 23:57:20.585  INFO 3720 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2020-04-23 23:57:20.648  INFO 3720 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2020-04-23 23:57:20.663  INFO 3720 --- [restartedMain] top.boluofan.blog.BlogApplication        : Started BlogApplication in 10.125 seconds (JVM running for 13.375)
+2020-04-23 23:57:43.714  INFO 3720 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2020-04-23 23:57:43.714  INFO 3720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2020-04-23 23:57:43.756  INFO 3720 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 41 ms
+2020-04-23 23:57:43.785  INFO 3720 --- [http-nio-8080-exec-1] top.boluofan.blog.aspect.LogAspect       : ---before
+2020-04-23 23:57:43.788  INFO 3720 --- [http-nio-8080-exec-1] top.boluofan.blog.aspect.LogAspect       : Request : {url='http://localhost:8080/', ip='0:0:0:0:0:0:0:1', classMethod='top.boluofan.blog.web.IndexController.index', args=[]}
+2020-04-23 23:57:43.794  INFO 3720 --- [http-nio-8080-exec-1] top.boluofan.blog.aspect.LogAspect       : Result : index 
+2020-04-23 23:57:51.815  INFO 3720 --- [http-nio-8080-exec-10] top.boluofan.blog.aspect.LogAspect       : ---before
+2020-04-23 23:57:51.815  INFO 3720 --- [http-nio-8080-exec-10] top.boluofan.blog.aspect.LogAspect       : Request : {url='http://localhost:8080/index.html', ip='0:0:0:0:0:0:0:1', classMethod='top.boluofan.blog.web.IndexController.loginndex', args=[]}
+2020-04-23 23:57:51.815  INFO 3720 --- [http-nio-8080-exec-10] top.boluofan.blog.aspect.LogAspect       : Result : index 
