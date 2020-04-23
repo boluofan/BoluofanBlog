@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
+<head th:replace="admin/_fragments :: head(~{::title})">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +16,7 @@
 <body>
   <div class="container-scroller d-flex">
     <!-- 左侧方导航栏 -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <nav class="sidebar sidebar-offcanvas" th:replace="admin/_fragments :: sidebar" id="sidebar">
       <ul class="nav">
         <li class="nav-item sidebar-category">
           <p>导航栏</p>
@@ -26,17 +26,17 @@
           <a class="nav-link" href="index.html">
             <i class="mdi mdi-view-quilt menu-icon"></i>
             <span class="menu-title">仪表盘</span>
-            <div class="badge badge-info badge-pill">2</div>
+            <!--<div class="badge badge-info badge-pill">2</div>-->
           </a>
         </li>
         <li class="nav-item sidebar-category">
-          <p>组件</p>
+          <p>博客管理</p>
           <span></span>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-            <i class="mdi mdi-palette menu-icon"></i>
-            <span class="menu-title">UI元素</span>
+            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+            <span class="menu-title">文章管理</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic">
@@ -48,41 +48,41 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/forms/basic_elements.html">
-            <i class="mdi mdi-view-headline menu-icon"></i>
-            <span class="menu-title">表单元素</span>
+            <i class=" mdi mdi-image-filter-vintage menu-icon"></i>
+            <span class="menu-title">标签管理</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/charts/chartjs.html">
-            <i class="mdi mdi-chart-pie menu-icon"></i>
-            <span class="menu-title">图表</span>
+            <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+            <span class="menu-title">分类管理</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/tables/basic-table.html">
-            <i class="mdi mdi-grid-large menu-icon"></i>
-            <span class="menu-title">表格</span>
+            <i class="mdi mdi-comment-account menu-icon"></i>
+            <span class="menu-title">评论管理</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="pages/icons/mdi.html">
-            <i class="mdi mdi-emoticon menu-icon"></i>
-            <span class="menu-title">图示</span>
+            <i class=" mdi mdi-drag menu-icon"></i>
+            <span class="menu-title">草稿箱</span>
           </a>
         </li>
         <li class="nav-item sidebar-category">
-          <p>页面</p>
+          <p>设置</p>
           <span></span>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-            <i class="mdi mdi-account menu-icon"></i>
-            <span class="menu-title">用户页面</span>
+            <i class="mdi mdi-brightness-7 menu-icon"></i>
+            <span class="menu-title">插件设置</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="auth">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="login.html"> 登录1 </a></li>
+              <li class="nav-item"> <a class="nav-link" href="login.html"> 网易云音乐 </a></li>
               <li class="nav-item"> <a class="nav-link" href="login-2.html"> 登录2 </a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> 注册1 </a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> 注册2 </a></li>
@@ -91,7 +91,7 @@
           </div>
         </li>
         <li class="nav-item sidebar-category">
-          <p>应用</p>
+          <p>其它</p>
           <span></span>
         </li>
         <li class="nav-item">
@@ -105,7 +105,7 @@
     <!-- 右侧内容区域 -->
     <div class="container-fluid page-body-wrapper">
       <!-- 顶部导航栏 -->
-      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+      <nav th:replace="admin/_fragments :: navbar" class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
@@ -116,99 +116,29 @@
           </div>
           <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">欢迎回来, 菠萝饭</h4>
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item">
-              <h4 class="mb-0 font-weight-bold d-none d-xl-block">2020年04月22日</h4>
-            </li>
-            <li class="nav-item dropdown mr-1">
-              <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-calendar mx-0"></i>
-                <span class="count bg-info">2</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">留言</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                      <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow">
-                    <h6 class="preview-subject ellipsis font-weight-normal">David Grey</h6>
-                    <p class="font-weight-light small-text text-muted mb-0">
-                      The meeting is cancelled
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                      <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow">
-                    <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook</h6>
-                    <p class="font-weight-light small-text text-muted mb-0">
-                      New product launch
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                      <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
-                  </div>
-                  <div class="preview-item-content flex-grow">
-                    <h6 class="preview-subject ellipsis font-weight-normal"> Johnson</h6>
-                    <p class="font-weight-light small-text text-muted mb-0">
-                      Upcoming board meeting
-                    </p>
-                  </div>
-                </a>
+              <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                  <ul class="navbar-nav navbar-nav-right">
+                      <li class="nav-item nav-profile dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                              <img style="width: 50px; height: 50px" src="images/faces/face5.jpg" alt="profile"/>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                              <a class="dropdown-item">
+                                  <i class="mdi mdi-settings text-primary"></i>
+                                  设置
+                              </a>
+                              <a class="dropdown-item">
+                                  <i class="mdi mdi-logout text-primary"></i>
+                                  注销
+                              </a>
+                              <a class="dropdown-item">
+                                  <i class=" mdi mdi-account-convert"></i>
+                                  更换头像
+                              </a>
+                          </div>
+                      </li>
+                  </ul>
               </div>
-            </li>
-            <li class="nav-item dropdown mr-2">
-              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="mdi mdi-email-open mx-0"></i>
-                <span class="count bg-danger">1</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">通知</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="mdi mdi-information mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">错误信息</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Just now
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="mdi mdi-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">设置</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      Private message
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="mdi mdi-account-box mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">新用户注册</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted">
-                      2 days ago
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </li>
           </ul>
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="mdi mdi-menu"></span>
@@ -221,39 +151,6 @@
               <div class="input-group">
                 <input type="text" class="form-control" placeholder="此处输入关键字搜索" aria-label="search" aria-describedby="search">
               </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="images/faces/face5.jpg" alt="profile"/>
-                <span class="nav-profile-name">菠萝饭</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                  <i class="mdi mdi-settings text-primary"></i>
-                  设置
-                </a>
-                <a class="dropdown-item">
-                  <i class="mdi mdi-logout text-primary"></i>
-                  注销
-                </a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link icon-link">
-                <i class="mdi mdi-plus-circle-outline"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link icon-link">
-                <i class="mdi mdi-web"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link icon-link">
-                <i class="mdi mdi-clock-outline"></i>
-              </a>
             </li>
           </ul>
         </div>
@@ -424,7 +321,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Financial management review</h4>
+                  <h4 class="card-title">访问用户Top10</h4>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
@@ -636,7 +533,7 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- 底部Footer -->
-        <footer class="footer">
+        <footer  th:replace="admin/_fragments :: footer" class="footer">
           <div class="card">
             <div class="card-body">
               <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
@@ -655,20 +552,14 @@
   <!-- container-scroller -->
 
   <!-- base:js -->
+  <!--/*/<th:block  th:replace="admin/_fragments :: script" >/*/-->
   <script src="vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
   <script src="vendors/chart.js/Chart.min.js"></script>
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
   <script src="js/off-canvas.js"></script>
   <script src="js/hoverable-collapse.js"></script>
   <script src="js/template.js"></script>
-  <!-- endinject -->
-  <!-- plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
+  <!--/*/</th:block>/*/-->
   <!-- End custom js for this page-->
 </body>
 

@@ -1,29 +1,182 @@
+<!--html片段-->
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--head头-->
 <head th:fragment="head(title)">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Boluofan Admin</title>
+    <title>菠萝饭后台</title>
+    <!-- base:css -->
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css" th:href="@{vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css" th:href="@{vendors/css/vendor.bundle.base.css}">
     <link rel="stylesheet" href="css/style.css" th:href="@{css/style.css}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" th:href="@{images/favicon.png}">
-    <!--网页黑白显示-->
-    <!--<style type="text/css">
-        html {
-            -webkit-filter: grayscale(100%);
-            -moz-filter: grayscale(100%);
-            -ms-filter: gray(100%);
-            -o-filter: grayscale(100%);
-            filter: grayscale(100%);
-            filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
-        }
-    </style>-->
+    <link rel="shortcut icon" href="images/favicon.png" th:href="@{/images/favicon.png}">
 </head>
-<body>
 
+<!-- 左侧方导航栏 -->
+<nav th:fragment="sidebar" class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item sidebar-category">
+            <p>导航栏</p>
+            <span></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="mdi mdi-view-quilt menu-icon"></i>
+                <span class="menu-title">仪表盘</span>
+                <!--<div class="badge badge-info badge-pill">2</div>-->
+            </a>
+        </li>
+        <li class="nav-item sidebar-category">
+            <p>博客管理</p>
+            <span></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                <span class="menu-title">文章管理</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">按钮</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">样式</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+                <i class=" mdi mdi-image-filter-vintage menu-icon"></i>
+                <span class="menu-title">标签管理</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pages/charts/chartjs.html">
+                <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+                <span class="menu-title">分类管理</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+                <i class="mdi mdi-comment-account menu-icon"></i>
+                <span class="menu-title">评论管理</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="pages/icons/mdi.html">
+                <i class=" mdi mdi-drag menu-icon"></i>
+                <span class="menu-title">草稿箱</span>
+            </a>
+        </li>
+        <li class="nav-item sidebar-category">
+            <p>设置</p>
+            <span></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="mdi mdi-brightness-7 menu-icon"></i>
+                <span class="menu-title">插件设置</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="login.html"> 网易云音乐 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="login-2.html"> 登录2 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> 注册1 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> 注册2 </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="lock-screen.html"> 锁屏 </a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item sidebar-category">
+            <p>其它</p>
+            <span></span>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="docs/documentation.html">
+                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                <span class="menu-title">资料</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- 顶部导航栏 -->
+<nav th:fragment="navbar" class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+        </button>
+        <div class="navbar-brand-wrapper">
+            <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+        </div>
+        <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">欢迎回来, 菠萝饭</h4>
+        <ul class="navbar-nav navbar-nav-right">
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <img style="width: 50px; height: 50px" src="images/faces/face5.jpg" alt="profile" th:src="@{images/faces/face5.jpg}"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="mdi mdi-settings text-primary"></i>
+                                设置
+                            </a>
+                            <a class="dropdown-item">
+                                <i class="mdi mdi-logout text-primary"></i>
+                                注销
+                            </a>
+                            <a class="dropdown-item">
+                                <i class=" mdi mdi-account-convert"></i>
+                                更换头像
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+        </button>
+    </div>
+    <!--搜索框-->
+    <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+        <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="此处输入关键字搜索" aria-label="search" aria-describedby="search">
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 底部Footer -->
+<footer th:fragment="footer" class="footer">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
+                <p class="text-center text-sm-left d-block d-sm-inline-block mb-0">版权归菠萝饭所有</p>
+                <p class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center mb-0"><a href="https://github.com/boluofan/BoluofanBlog" target="_blank" title="GiHutb地址">GiHutb地址</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS Files -->
+<th:block th:fragment="script">
+    <script src="vendors/js/vendor.bundle.base.js" th:src="@{vendors/js/vendor.bundle.base.js}"></script>
+    <script src="vendors/chart.js/Chart.min.js" th:src="@{vendors/chart.js/Chart.min.js}"></script>
+    <script src="js/off-canvas.js" th:src="@{js/off-canvas.js}"></script>
+    <script src="js/hoverable-collapse.js" th:src="@{js/hoverable-collapse.js}"></script>
+    <script src="js/template.js" th:src="@{js/template.js}"></script>
+    <script src="js/dashboard.js" th:src="@{js/dashboard.js}"></script>
+</th:block>
+
+<body>
 </body>
 </html>
