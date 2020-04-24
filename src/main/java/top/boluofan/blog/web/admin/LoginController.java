@@ -1,12 +1,15 @@
 package top.boluofan.blog.web.admin;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import top.boluofan.blog.constant.WebConstant;
 import top.boluofan.blog.po.User;
 import top.boluofan.blog.service.UserService;
@@ -26,6 +29,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class LoginController {
     private MapCache cache = MapCache.single();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserService userService;
 
@@ -40,12 +44,15 @@ public class LoginController {
                         @RequestParam String validateCode,
                         @RequestParam(required = false) Boolean rememberMe,
                         HttpServletResponse response,
-                        HttpSession session) {
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
         Integer error_count = cache.get("login_error_count");
         try {
+            String errMessage = "";
             if (StringUtils.isNotBlank(validateCode)) {
                 validateCode = validateCode.toLowerCase();//转小写
                 String sessionVC = session.getAttribute("sessionVC").toString();
+                sessionVC = "111";
                 if (validateCode.equals(sessionVC)){
                     User user = userService.checkUser(username, password);
                     if (user != null) {//校验通过
@@ -57,20 +64,38 @@ public class LoginController {
                         // 重置密码并存入session
                         user.setPassword("");
                         session.setAttribute(WebConstant.LOGIN_SESSION_KEY, user);
+                        return "admin/index";
+                    }else {
+                        errMessage = "用户名或密码错误，请重新输入";
+                        redirectAttributes.addFlashAttribute("errMessage",errMessage);
+                        return "redirect:/admin";
                     }
                 }else {
-                    error_count = error_count++;
-                    cache.set("login_error_count",error_count,10*60);
-                    if (error_count >= 3) {
-                        System.out.println("---验证码输入错误三次，请稍后再试");
-                    }
+                    error_count = null == error_count ? 1 : error_count + 1;
+                    if (error_count >= 3) errMessage = "验证码输入错误三次，请稍后再试";
+                    else errMessage = "验证码错误，请重新输入";
+                    cache.set("login_error_count", error_count, 10 * 60);
+                    redirectAttributes.addFlashAttribute("errMessage",errMessage);
+                    return "redirect:/admin";
                 }
             } else {
-                System.out.println("验证码为空");
+                errMessage = "验证码为空，请重新输入";
+                redirectAttributes.addFlashAttribute("errMessage",errMessage);
+                return "redirect:/admin";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return "redirect:/admin";
         }
-        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/logout")
+    public String logout (HttpSession session){
+        session.removeAttribute(WebConstant.LOGIN_SESSION_KEY);
+        return "redirect:/admin";
     }
 }
