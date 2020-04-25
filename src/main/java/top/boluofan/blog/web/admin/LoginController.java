@@ -51,7 +51,10 @@ public class LoginController {
             String errMessage = "";
             if (StringUtils.isNotBlank(validateCode)) {
                 validateCode = validateCode.toLowerCase();//转小写
-                String sessionVC = session.getAttribute("sessionVC").toString();
+                String sessionVC = "";
+                Object sessionVCObj = session.getAttribute("sessionVC");
+                if (sessionVCObj != null) sessionVC = sessionVCObj.toString();
+
                 sessionVC = "111";
                 if (validateCode.equals(sessionVC)){
                     User user = userService.checkUser(username, password);
