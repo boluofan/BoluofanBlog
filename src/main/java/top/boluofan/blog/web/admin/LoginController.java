@@ -60,6 +60,7 @@ public class LoginController {
                     User user = userService.checkUser(username, password);
                     if (user != null) {//校验通过
                         //是否需要存入 cookie
+                        if (null == rememberMe) rememberMe = false;
                         if (rememberMe){
                             String userIdStr = user.getId().toString();
                             CommonUtils.setCookie(response,userIdStr,60*60*24*7);
