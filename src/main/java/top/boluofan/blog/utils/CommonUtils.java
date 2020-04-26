@@ -8,6 +8,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Boluofan
@@ -16,6 +18,42 @@ import javax.servlet.http.HttpServletResponse;
  * @Date 2020/4/23 17:33
  */
 public class CommonUtils {
+
+    public static void main(String[] args) {
+        String s = md5Encode("111111" + "123poihg");
+        System.out.println(s);
+    }
+
+    /**
+     * MD5加密类
+     * @param str 要加密的字符串
+     * @return    加密后的字符串
+     */
+    public static String md5Encode(String str){
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte[]byteDigest = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < byteDigest.length; offset++) {
+                i = byteDigest[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            //32位加密
+            return buf.toString();
+            // 16位的加密
+            //return buf.toString().substring(8, 24);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 
     /**
      * 设置记住密码cookie

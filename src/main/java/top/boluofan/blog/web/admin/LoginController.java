@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import top.boluofan.blog.constant.WebConstant;
+import top.boluofan.blog.po.Config;
 import top.boluofan.blog.po.User;
+import top.boluofan.blog.service.ConfigService;
 import top.boluofan.blog.service.UserService;
 import top.boluofan.blog.utils.CommonUtils;
 import top.boluofan.blog.utils.MapCache;
@@ -28,11 +30,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/admin")
 public class LoginController {
-    private MapCache cache = MapCache.single();
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserService userService;
-
+    @Autowired
+    ConfigService configService;
+    private MapCache cache = MapCache.single();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    //private final String MD5SALT = configService.getConfigValueByKey("MD5SALT");
+    private final String MD5SALT = "123poihg";
     @GetMapping
     public String loginPage() {
         return "admin/login";
@@ -57,7 +62,8 @@ public class LoginController {
 
                 sessionVC = "111";
                 if (validateCode.equals(sessionVC)){
-                    User user = userService.checkUser(username, password);
+                    String encodePassword = CommonUtils.md5Encode(password+MD5SALT);
+                    User user = userService.checkUser(username, encodePassword);
                     if (user != null) {//校验通过
                         //是否需要存入 cookie
                         if (null == rememberMe) rememberMe = false;

@@ -56,31 +56,15 @@
 </div>
 <!-- container-scroller -->
 <!-- base:js -->
+<!--/*/<th:block  th:replace="admin/_fragments :: script" >/*/-->
 <script src="../../static/admin/vendors/js/vendor.bundle.base.js"></script>
 <script src="../../static/admin/js/off-canvas.js"></script>
 <script src="../../static/admin/js/hoverable-collapse.js"></script>
 <script src="../../static/admin/js/template.js"></script>
+<!--/*/</th:block>/*/-->
 <!-- endinject -->
 </body>
 
 <script>
-    $('#loginForm').form({
-        fields : {
-            username : {
-                identifier: 'username',
-                rules: [{
-                    type : 'empty',
-                    prompt: '请输入用户名'
-                }]
-            },
-            password : {
-                identifier: 'password',
-                rules: [{
-                    type : 'empty',
-                    prompt: '请输入密码'
-                }]
-            }
-        }
-    });
 </script>
 </html>
