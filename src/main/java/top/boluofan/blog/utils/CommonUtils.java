@@ -7,6 +7,7 @@ import top.boluofan.blog.constant.WebConstant;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,8 +20,9 @@ import java.security.NoSuchAlgorithmException;
  */
 public class CommonUtils {
 
-    public static void main(String[] args) {
-        String s = md5Encode("111111" + "123poihg");
+    public static void main(String[] args) throws Exception {
+        //String s = enAes("111111" ,"0123456789abcdef");
+        String s = deAes("WXs27n8A/znwC82vPrS4kw==","0123456789abcdef");
         System.out.println(s);
     }
 
@@ -62,11 +64,14 @@ public class CommonUtils {
      * @param data 数据
      * @param seconds 过期时间 s
      */
-    public static void setCookie(HttpServletResponse response, String data,Integer seconds) {
+    public static void setCookie(HttpServletResponse response, String data,Integer seconds, String AES_SALT,String USER_COOKIE_NAME) {
         try {
-            String val = enAes(data,WebConstant.AES_SALT);
+            String val = data;
+            if (!"".equals(AES_SALT)){//加密
+                val = enAes(data,AES_SALT);
+            }
             boolean isSSL = false;
-            Cookie cookie = new Cookie(WebConstant.USER_COOKIE_NAME, val);
+            Cookie cookie = new Cookie(USER_COOKIE_NAME, val);
             cookie.setPath("/");
             cookie.setMaxAge(seconds);
             cookie.setSecure(isSSL);
@@ -74,6 +79,32 @@ public class CommonUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取cookie
+     * @param request
+     * @param USER_COOKIE_NAME
+     * @return
+     */
+    public static String getCookie(HttpServletRequest request,String USER_COOKIE_NAME) {
+        String value = "";
+        String cookieName = "";
+        try {
+            Cookie[] cookies = request.getCookies();
+            if(cookies != null && cookies.length > 0){
+                for (Cookie cookie : cookies){
+                    cookieName = cookie.getName();
+                    if (USER_COOKIE_NAME.equals(cookieName)){
+                       value = cookie.getValue();
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return value;
     }
 
     //AES加密
@@ -94,5 +125,7 @@ public class CommonUtils {
         byte[] decValue = cipher.doFinal(cipherTextBytes);
         return new String(decValue);
     }
+
+
 }
 

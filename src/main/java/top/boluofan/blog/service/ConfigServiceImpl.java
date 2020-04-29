@@ -19,10 +19,8 @@ public class ConfigServiceImpl implements ConfigService{
     @Override
     public String getConfigValueByKey(String key) {
         String configValue = null;//配置值
-        System.out.println("key ："+key);
         Config config = configRepository.findByKey(key);
         if (null != config) configValue = config.getValue();
-        System.out.println("123poihg: "+configValue);
         return configValue;
     }
 }

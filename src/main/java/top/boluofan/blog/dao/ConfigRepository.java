@@ -1,6 +1,4 @@
 package top.boluofan.blog.dao;
-
-import org.aspectj.apache.bcel.util.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import top.boluofan.blog.po.Config;
 

@@ -18,6 +18,7 @@ import top.boluofan.blog.service.UserService;
 import top.boluofan.blog.utils.CommonUtils;
 import top.boluofan.blog.utils.MapCache;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -36,8 +37,7 @@ public class LoginController {
     ConfigService configService;
     private MapCache cache = MapCache.single();
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    //private final String MD5SALT = configService.getConfigValueByKey("MD5SALT");
-    private final String MD5SALT = "123poihg";
+
     @GetMapping
     public String loginPage() {
         return "admin/login";
@@ -49,6 +49,7 @@ public class LoginController {
                         @RequestParam String validateCode,
                         @RequestParam(required = false) Boolean rememberMe,
                         HttpServletResponse response,
+                        HttpServletRequest request,
                         HttpSession session,
                         RedirectAttributes redirectAttributes) {
         Integer error_count = cache.get("login_error_count");
@@ -62,14 +63,23 @@ public class LoginController {
 
                 sessionVC = "111";
                 if (validateCode.equals(sessionVC)){
-                    String encodePassword = CommonUtils.md5Encode(password+MD5SALT);
+                    String MD5_SALT = configService.getConfigValueByKey("MD5_SALT");
+                    String AES_SALT = configService.getConfigValueByKey("AES_SALT");
+                    String USER_COOKIE_NAME = configService.getConfigValueByKey("USER_COOKIE_NAME");
+                    String encodePassword = CommonUtils.enAes(password,AES_SALT);
+                    String cookieName = CommonUtils.getCookie(request,USER_COOKIE_NAME+"_userName");
+                    if (!"".equals(cookieName)){//不加密
+                        encodePassword = password;
+                    }
                     User user = userService.checkUser(username, encodePassword);
                     if (user != null) {//校验通过
                         //是否需要存入 cookie
                         if (null == rememberMe) rememberMe = false;
                         if (rememberMe){
-                            String userIdStr = user.getId().toString();
-                            CommonUtils.setCookie(response,userIdStr,60*60*24*7);
+                            String userName = user.getUsername();
+                            String passWord = user.getPassword();
+                            CommonUtils.setCookie(response,userName,60*60*24*7,"",USER_COOKIE_NAME+"_userName");
+                            CommonUtils.setCookie(response,passWord,60*60*24*7,"",USER_COOKIE_NAME+"_passWord");
                         }
                         // 重置密码并存入session
                         user.setPassword("");
