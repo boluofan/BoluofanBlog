@@ -73,14 +73,19 @@ public class LoginController {
                     }
                     User user = userService.checkUser(username, encodePassword);
                     if (user != null) {//校验通过
+                        String userName = user.getUsername();
+                        String passWord = user.getPassword();
                         //是否需要存入 cookie
                         if (null == rememberMe) rememberMe = false;
-                        if (rememberMe){
-                            String userName = user.getUsername();
-                            String passWord = user.getPassword();
-                            CommonUtils.setCookie(response,userName,60*60*24*7,"",USER_COOKIE_NAME+"_userName");
-                            CommonUtils.setCookie(response,passWord,60*60*24*7,"",USER_COOKIE_NAME+"_passWord");
+                        int cookieSecond = 60*60*24*7;//默认存Cookie
+                        if (!rememberMe){
+                            cookieSecond = -1;
+                            userName = "";
+                            passWord = "";
                         }
+                        System.out.println("remember: "+rememberMe+"cookie: "+cookieSecond);
+                        CommonUtils.setCookie(response,userName,cookieSecond,"",USER_COOKIE_NAME+"_userName");
+                        CommonUtils.setCookie(response,passWord,cookieSecond,"",USER_COOKIE_NAME+"_passWord");
                         // 重置密码并存入session
                         user.setPassword("");
                         session.setAttribute(WebConstant.LOGIN_SESSION_KEY, user);

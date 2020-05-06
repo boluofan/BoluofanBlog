@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../../static/admin/css/style.css" th:href="@{/admin/css/style.css}">
     <!-- endinject -->
     <link rel="shortcut icon" href="../../static/admin/images/favicon.png" th:href="@{/admin/images/favicon.png}">
+    <link rel="stylesheet" href="../../static/plugins/editormd/examples/css/style.css" th:href="@{/plugins/editormd/examples/css/style.css}"/>
+    <link rel="stylesheet" href="../../static/plugins/editormd/css/editormd.css" th:href="@{/plugins/editormd/css/editormd.css}"/>
 </head>
 
 <!-- 左侧方导航栏 -->
@@ -155,17 +157,6 @@
     </div>
 </nav>
 
-<!-- 底部Footer -->
-<footer th:fragment="footer" class="footer">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
-                <p class="text-center text-sm-left d-block d-sm-inline-block mb-0">版权归菠萝饭所有</p>
-                <p class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center mb-0"><a href="https://github.com/boluofan/BoluofanBlog" target="_blank" title="GiHutb地址">GiHutb地址</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
 
 
 <!-- JS Files -->
@@ -176,6 +167,8 @@
     <script src="../../static/admin/js/hoverable-collapse.js" th:src="@{/admin/js/hoverable-collapse.js}"></script>
     <script src="../../static/admin/js/template.js" th:src="@{/admin/js/template.js}"></script>
     <script src="../../static/admin/js/dashboard.js" th:src="@{/admin/js/dashboard.js}"></script>
+    <script src="../../static/js/jquery-1.12.1.min.js" th:src="@{/js/jquery-1.12.1.min.js}"></script>
+    <script src="../../static/plugins/editormd/editormd.min.js" th:src="@{/plugins/editormd/editormd.min.js}"></script>
 </th:block>
 
 <body>
