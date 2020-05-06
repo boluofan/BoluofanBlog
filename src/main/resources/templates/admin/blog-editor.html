@@ -118,10 +118,8 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
                 <div class="navbar-brand-wrapper">
-                    <a class="navbar-brand brand-logo" href="index.html"><img src="../../static/admin/images/logo.svg"
-                                                                              alt="logo"/></a>
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                            src="../../static/admin/images/logo-mini.svg" alt="logo"/></a>
+                    <a class="navbar-brand brand-logo" href="index.html"><img src="../../static/admin/images/logo.svg" alt="logo"/></a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../static/admin/images/logo-mini.svg" alt="logo"/></a>
                 </div>
                 <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">欢迎回来, 菠萝饭</h4>
                 <ul class="navbar-nav navbar-nav-right">
@@ -157,16 +155,6 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
             </div>
-            <!--搜索框-->
-            <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="此处输入关键字搜索" aria-label="search" aria-describedby="search">
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </nav>
         <!-- 下方内容区 -->
         <div>
@@ -176,16 +164,7 @@
                     <h1>MarkDown模板</h1>
                 </header>
                 <div id="test-editormd">
-                <textarea style="display:none">[TOC]
-
-```html
-&lt;!-- English --&gt;
-&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
-
-&lt;!-- 繁體中文 --&gt;
-&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
-```
-                </textarea>
+                <textarea style="display:none"></textarea>
                 </div>
             </div>
             <!-- content-wrapper ends -->
@@ -213,8 +192,9 @@
     testEditor = editormd({
         id: "test-editormd",
         width: "90%",
-        height: 640,
+        height: 630,
         path: "../../static/plugins/editormd/lib/"
+
     });
 </script>
 <!-- End custom js for this page-->
